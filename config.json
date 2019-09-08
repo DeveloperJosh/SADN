@@ -1,0 +1,7 @@
+{
+    "prefix" : "=",
+    "adsChannel" : "id of ad channel",
+    "helpMessage" : "say =advertise to make an ad for your server",
+    "centralServer" : "invite to your advertising server goes here",
+    "admin" : "id of bot manager"
+}
