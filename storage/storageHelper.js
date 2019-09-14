@@ -29,10 +29,12 @@ function initUser(id) {
 module.exports.saveAd = async function(uID, name, invite, topic, description) {
   await initUser(uID);
   await delay(500);
+
   db.findOne({ ID: uID }, function(err, user) {
     user.ads.push(new Ad(name, invite, topic, description));
     db.update({ _id: user._id }, user);
   });
+  
 };
 
 module.exports.delad = async function(uID, adNum) {

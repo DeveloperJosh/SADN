@@ -13,7 +13,7 @@ client.on("message", msg => {
   if (msg.author.bot) return;
   var cmd;
   if (usersMakingAds.includes(msg.author.id)) {
-    if (msg.content == "=cancel") {
+    if (msg.content == `${config.prefix}cancel`) {
       usersMakingAds.splice(usersMakingAds.indexOf(msg.author.id), 1);
       delete ads[msg.author.id];
       msg.channel.send("ad canceled");
@@ -57,7 +57,7 @@ client.on("message", msg => {
             ads[msg.author.id][3].toLowerCase(),
             ads[msg.author.id][4]
           );
-          msg.channel.send("ad saved say =ads to view your ads");
+          msg.channel.send(`ad saved say ${config.prefix}ads to view your ads`);
         }
         msg.channel.send(embed);
         client.channels.get(config.adsChannel).send(embed);
@@ -83,7 +83,7 @@ client.on("message", msg => {
   if (cmd == "advertise") {
     ads[msg.author.id] = [];
     usersMakingAds.push(msg.author.id);
-    msg.channel.send("say ok to continue or =cancel to cancel");
+    msg.channel.send(`say ok to continue or ${config.prefix}cancel to cancel`);
   }
 
   if (cmd == "help") {
@@ -109,7 +109,7 @@ client.on("message", msg => {
       });
     });
   }
-  if (msg.content.startsWith("=sendad")) {
+if (msg.content.startsWith(`${config.prefix}sendad`)) {
     let args = msg.content.split(" ");
     num = Number(args[1]);
     if (num != NaN) {
@@ -131,7 +131,7 @@ client.on("message", msg => {
     }
   }
 
-  if (msg.content.startsWith("=search")) {
+  if (msg.content.startsWith(`${config.prefix}search`)) {
     var args = msg.content.split(" ");
     storageHeper.searchAds(
       args[1].toLowerCase(),
@@ -158,7 +158,7 @@ client.on("message", msg => {
     );
   }
 
-  if (msg.content.startsWith("=delad")) {
+  if (msg.content.startsWith(`${config.prefix}delad`)) {
     let args = msg.content.split(" ");
     let num = Number(args[1]);
     if (!isNaN(num)) {
@@ -170,7 +170,7 @@ client.on("message", msg => {
   }
 
   if (msg.author.id == config.admin) {
-    if (msg.content.startsWith("=banish")) {
+    if (msg.content.startsWith(`${config.prefix}banish`)) {
       let args = msg.content.split(" ");
       storageHeper.banish(args[1]);
     }
